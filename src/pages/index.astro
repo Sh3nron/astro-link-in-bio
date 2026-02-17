@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LinkBioPage from '../components/LinkBioPage.astro';
+import profileImage from '../assets/profile.svg';
+---
+
+<Layout 
+  title="Your Name | Links"
+  image={profileImage.src}
+>
+  <LinkBioPage profileImage={profileImage} />
+</Layout>

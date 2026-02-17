@@ -1,0 +1,144 @@
+---
+// iOS-style theme toggle slider with sun/moon icons
+---
+
+<button
+  id="themeToggle"
+  type="button"
+  role="switch"
+  aria-checked="false"
+  aria-label="Toggle dark mode"
+  class="theme-toggle"
+>
+  <span class="toggle-track">
+    <span class="toggle-sun" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="m4.93 4.93 1.41 1.41"></path>
+        <path d="m17.66 17.66 1.41 1.41"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="m6.34 17.66-1.41 1.41"></path>
+        <path d="m19.07 4.93-1.41 1.41"></path>
+      </svg>
+    </span>
+    <span class="toggle-thumb"></span>
+    <span class="toggle-moon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+      </svg>
+    </span>
+  </span>
+</button>
+
+<style>
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid oklch(0.6 0.2 250);
+    outline-offset: 2px;
+    border-radius: 9999px;
+  }
+
+  .toggle-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 48px;
+    height: 26px;
+    padding: 2px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.8),
+      0 2px 8px -2px rgba(0, 0, 0, 0.1);
+    transition: background 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.08),
+      inset 0 1px 1px rgba(255, 255, 255, 1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+                background 300ms ease,
+                box-shadow 300ms ease;
+    will-change: transform;
+  }
+
+  .toggle-sun,
+  .toggle-moon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    transition: opacity 200ms ease;
+    z-index: 1;
+  }
+
+  .toggle-sun {
+    color: oklch(0.75 0.15 70);
+    opacity: 1;
+  }
+
+  .toggle-moon {
+    color: oklch(0.85 0 0);
+    opacity: 0.4;
+  }
+
+  /* Dark mode styles */
+  :global(.dark) .toggle-track {
+    background: rgba(30, 30, 46, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.05),
+      0 2px 8px -2px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(147, 51, 234, 0.15);
+  }
+
+  :global(.dark) .toggle-thumb {
+    transform: translateX(22px);
+    background: linear-gradient(135deg, #2a2a3e 0%, #1e1e2e 100%);
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.2),
+      0 0 15px rgba(147, 51, 234, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  :global(.dark) .toggle-sun {
+    opacity: 0.4;
+  }
+
+  :global(.dark) .toggle-moon {
+    opacity: 1;
+    color: oklch(0.9 0.05 280);
+  }
+</style>
