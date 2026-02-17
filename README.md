@@ -8,6 +8,14 @@ A stunning, performant link-in-bio page built with **Astro 6 Beta**, **Tailwind 
 
 ---
 
+## Preview
+
+| Light Mode | Dark Mode |
+|:----------:|:---------:|
+| ![Light Mode](preview/light-mode.png) | ![Dark Mode](preview/dark-mode.png) |
+
+---
+
 ## Features
 
 - **Glassmorphism Design** — Frosted glass cards with layered shadows and backdrop blur
