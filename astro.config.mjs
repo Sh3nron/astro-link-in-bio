@@ -1,7 +1,10 @@
 import { defineConfig } from 'astro/config'
 
+// Use SITE_URL env variable or fallback to localhost
+const site = process.env.SITE_URL || 'http://localhost:4321'
+
 export default defineConfig({
-  site: 'https://your-domain.com',
+  site,
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'

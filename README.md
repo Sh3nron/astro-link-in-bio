@@ -89,14 +89,7 @@ Edit `src/components/SocialFooter.astro` to add your social media links. Replace
 
 ### 4. Site Metadata
 
-Edit `astro.config.mjs`:
-
-```js
-export default defineConfig({
-  site: 'https://your-domain.com',
-  // ...
-})
-```
+Set the `SITE_URL` environment variable to your production domain (e.g., in Vercel/Netlify settings or a `.env` file). The configuration automatically uses this or falls back to localhost for development.
 
 Edit `src/layouts/Layout.astro` for meta tags:
 
