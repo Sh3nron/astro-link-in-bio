@@ -15,15 +15,5 @@ export default defineConfig({
       minify: 'esbuild',
       assetsInlineLimit: 1024
     }
-  },
-  security: {
-    csp: {
-      scriptDirective: {
-        resources: ["'self'"]
-      },
-      styleDirective: {
-        resources: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"]
-      }
-    }
   }
 })
