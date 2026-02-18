@@ -3,15 +3,16 @@ interface Props {
   title: string;
   description?: string;
   href: string;
+  relMe?: boolean;
 }
 
-const { title, description, href } = Astro.props;
+const { title, description, href, relMe = true } = Astro.props;
 ---
 
 <a
   href={href}
   target="_blank"
-  rel="noopener noreferrer"
+  rel={`noopener noreferrer${relMe ? " me" : ""}`}
   class="glass-card group relative flex w-full items-center gap-4 rounded-[20px] px-4 py-4 overflow-hidden"
 >
   <div
