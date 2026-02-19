@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import LinkBioPage from '../components/LinkBioPage.astro';
 import profileImage from '../assets/profile.svg';
+import { siteConfig } from '../config';
 ---
 
 <Layout 
-  title="Your Name | Links"
+  title={siteConfig.title}
   image={profileImage.src}
 >
   <LinkBioPage profileImage={profileImage} />
