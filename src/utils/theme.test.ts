@@ -129,4 +129,46 @@ describe('Theme Utility', () => {
     assert.strictEqual(ariaChecked, 'false');
     assert.strictEqual(mockLocalStorage.getItem('theme'), 'light');
   });
+
+  test('setupThemeToggle handles localStorage errors', () => {
+    let clickHandler: () => void = () => {};
+    let ariaChecked = '';
+
+    const mockButton = {
+      setAttribute: (name: string, value: string) => {
+        if (name === 'aria-checked') ariaChecked = value;
+      },
+      addEventListener: (event: string, cb: () => void) => {
+        if (event === 'click') clickHandler = cb;
+      }
+    };
+
+    mockDocument.getElementById = (id: string) => {
+      if (id === 'themeToggle') return mockButton as any;
+      return null;
+    };
+
+    // Override setItem to throw
+    const originalSetItem = mockLocalStorage.setItem;
+    mockLocalStorage.setItem = () => {
+      throw new Error('Quota exceeded');
+    };
+
+    try {
+      // Initially light mode
+      mockDocument.documentElement.classList.remove('dark');
+
+      theme.setupThemeToggle();
+
+      // Simulate click
+      clickHandler();
+
+      // Theme should still be applied visually
+      assert.strictEqual(mockDocument.documentElement.classList.contains('dark'), true);
+      assert.strictEqual(ariaChecked, 'true');
+    } finally {
+      // Restore setItem
+      mockLocalStorage.setItem = originalSetItem;
+    }
+  });
 });

@@ -58,7 +58,12 @@ export function setupThemeToggle(): void {
     applyTheme(newTheme);
 
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', newTheme);
+      try {
+        localStorage.setItem('theme', newTheme);
+      } catch (e) {
+        // Silently fail if localStorage is not available (e.g. private mode or quota exceeded)
+        console.warn('Failed to save theme to localStorage:', e);
+      }
     }
 
     toggle.setAttribute('aria-checked', newTheme === 'dark' ? 'true' : 'false');
