@@ -109,33 +109,61 @@ Dark/light mode implemented via:
 
 ## Customization Guide
 
+All site content and configuration is centralized in `src/config.ts`.
+
 ### 1. Profile Information
 
-Edit `src/components/LinkBioPage.astro`:
+Edit the `profile` object in `src/config.ts`:
 
-```astro
-<ProfileSection
-  name="Your Name"
-  bio="Your Title or Tagline"
-  image={profileImage}
-/>
+```typescript
+export const siteConfig = {
+  // ...
+  profile: {
+    name: "Your Name",
+    bio: "Your Title or Tagline",
+  },
+  // ...
+};
 ```
 
 Replace `src/assets/profile.svg` with your image.
 
-### 2. Links
+### 2. Main Links
 
-Edit `LinkCard` components in `src/components/LinkBioPage.astro`:
+Edit the `links` array in `src/config.ts`:
 
-```astro
-<LinkCard title="Title" description="Description" href="https://url.com">
-  <svg slot="icon"><!-- SVG icon --></svg>
-</LinkCard>
+```typescript
+export const siteConfig = {
+  // ...
+  links: [
+    {
+      title: "Portfolio",
+      description: "View my work",
+      href: "https://your-portfolio.com",
+      iconPath: `...`, // Inline SVG path content
+    },
+    // ...
+  ],
+};
 ```
 
 ### 3. Social Icons
 
-Edit `src/components/SocialFooter.astro` - replace `#` with your URLs.
+Edit the `socialLinks` array in `src/config.ts`:
+
+```typescript
+export const siteConfig = {
+  // ...
+  socialLinks: [
+    {
+      platform: "Twitter",
+      href: "https://twitter.com/yourhandle",
+      iconPath: `...`,
+    },
+    // ...
+  ],
+};
+```
 
 ### 4. Colors & Theme
 
@@ -158,7 +186,7 @@ Edit CSS variables in `src/styles/globals.css`:
 ### 5. Site Metadata
 
 - `astro.config.mjs`: Set `site: 'https://your-domain.com'`
-- `src/layouts/Layout.astro`: Update `siteName` and default `description`
+- `src/config.ts`: Update `title`, `description`, and `siteName`
 
 ## Deployment
 
