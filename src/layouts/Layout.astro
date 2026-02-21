@@ -37,13 +37,30 @@ const siteName = siteConfig.siteName;
     <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
     
+    <script is:inline>
+      (function() {
+        try {
+          var savedTheme = localStorage.getItem('theme');
+          var theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : null;
+
+          if (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          }
+
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          console.error('Theme initialization failed', e);
+        }
+      })();
+    </script>
+
     <script>
-      import { initTheme, setupThemeToggle } from '../utils/theme';
+      import { setupThemeToggle } from '../utils/theme';
 
-      // Initialize theme immediately to avoid flash of unstyled content
-      initTheme();
-
-      // Setup toggle when DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupThemeToggle);
       } else {
