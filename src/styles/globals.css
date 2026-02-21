@@ -288,10 +288,10 @@
   66% { transform: translate(80px, 20px) scale(1); }
 }
 
-.animate-float-1 { animation: orbFloat1 20s infinite ease-in-out; }
-.animate-float-2 { animation: orbFloat2 25s infinite ease-in-out; }
-.animate-float-3 { animation: orbFloat3 18s infinite ease-in-out; }
-.animate-float-4 { animation: orbFloat4 22s infinite ease-in-out; }
+.animate-float-1 { animation: orbFloat1 20s infinite ease-in-out; will-change: transform; }
+.animate-float-2 { animation: orbFloat2 25s infinite ease-in-out; will-change: transform; }
+.animate-float-3 { animation: orbFloat3 18s infinite ease-in-out; will-change: transform; }
+.animate-float-4 { animation: orbFloat4 22s infinite ease-in-out; will-change: transform; }
 
 .bg-orb-1 {
   background: radial-gradient(circle, rgba(147, 51, 234, 0.25) 0%, transparent 70%);
