@@ -25,11 +25,16 @@ const isSvg = image.format === 'svg';
         />
       ) : (
         <Picture
+          /* Optimized for LCP: generates 1x/2x versions and prevents layout shift */
           src={image}
           formats={['avif', 'webp']}
           alt={`${name} profile photo`}
           loading="eager"
           fetchpriority="high"
+          width={96}
+          height={96}
+          widths={[96, 192]}
+          sizes="96px"
         />
       )}
     </div>
