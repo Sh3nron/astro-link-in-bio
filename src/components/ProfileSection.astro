@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets';
+import { Picture, Image } from 'astro:assets';
 
 interface Props {
   name: string;
@@ -8,17 +8,30 @@ interface Props {
 }
 
 const { name, bio, image } = Astro.props;
+const isSvg = image.format === 'svg';
 ---
 
 <div class="flex flex-col items-center text-center">
   <div class="glass-profile relative rounded-full">
     <div class="relative h-24 w-24 overflow-hidden rounded-full">
-      <Picture 
-        src={image}
-        formats={['avif', 'webp']}
-        alt={`${name} profile photo`}
-        loading="eager"
-      />
+      {isSvg ? (
+        <Image
+          src={image}
+          alt={`${name} profile photo`}
+          loading="eager"
+          fetchpriority="high"
+          width={96}
+          height={96}
+        />
+      ) : (
+        <Picture
+          src={image}
+          formats={['avif', 'webp']}
+          alt={`${name} profile photo`}
+          loading="eager"
+          fetchpriority="high"
+        />
+      )}
     </div>
     <div class="profile-glow absolute inset-0 rounded-full pointer-events-none"></div>
   </div>
