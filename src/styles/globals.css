@@ -261,7 +261,7 @@
 .animate-fade-in-up {
   animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   opacity: 0;
-  will-change: opacity, transform;
+
 }
 
 @keyframes orbFloat1 {
@@ -310,7 +310,8 @@
 }
 
 .bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  /* Reduced numOctaves from 4 to 2 to improve rendering performance on low-power devices. */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 .animation-delay-100 { animation-delay: 0.1s; }
