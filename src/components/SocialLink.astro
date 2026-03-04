@@ -1,4 +1,6 @@
 ---
+import { sanitizeSvg } from "../utils/security";
+
 interface Props {
   href: string;
   platform: string;
@@ -25,6 +27,6 @@ const { href, platform, iconPath } = Astro.props;
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    set:html={iconPath}
+    set:html={sanitizeSvg(iconPath)}
   />
 </a>

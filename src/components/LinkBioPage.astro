@@ -4,6 +4,7 @@ import LinkCard from "./LinkCard.astro";
 import SocialFooter from "./SocialFooter.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { siteConfig } from "../config";
+import { sanitizeSvg } from "../utils/security";
 
 interface Props {
   profileImage: ImageMetadata;
@@ -54,7 +55,7 @@ const { profileImage } = Astro.props;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="h-5 w-5"
-                set:html={link.iconPath}
+                set:html={sanitizeSvg(link.iconPath)}
               />
             </LinkCard>
           </div>
