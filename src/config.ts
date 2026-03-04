@@ -2,6 +2,7 @@ export const siteConfig = {
   title: "Your Name | Links",
   description: "Find all my links in one place.",
   siteName: "Your Name",
+  footerText: "Made with Astro",
   profile: {
     name: "Your Name",
     bio: "Your Title or Tagline",
